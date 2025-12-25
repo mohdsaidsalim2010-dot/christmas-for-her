@@ -2,290 +2,244 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For You 🤍</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Wifey 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-
 body{
   margin:0;
-  font-family:'Segoe UI', sans-serif;
-  background: radial-gradient(circle at top,#0b1d3a,#02010a);
-  color:white;
-  text-align:center;
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#1a2440,#050814);
+  color:#fff;
   overflow-x:hidden;
-  cursor:crosshair;
 }
 
-/* sections */
-section{
-  min-height:100vh;
-  padding:80px 22px;
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:30px 20px 80px;
+  text-align:center;
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:3rem;
+  margin-bottom:5px;
+}
+
+.name{
+  font-size:1.4rem;
+  opacity:.85;
+  animation:fadeName 6s infinite;
+}
+
+@keyframes fadeName{
+  0%{opacity:0}
+  20%{opacity:1}
+  80%{opacity:1}
+  100%{opacity:0}
+}
+
+.card{
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:22px;
+  margin:25px 0;
+  box-shadow:0 0 40px rgba(255,255,255,.05);
+}
+
+.line{
+  font-size:1.05rem;
+  margin:18px 0;
+}
+
+.timeMsg{
+  opacity:.85;
+  font-style:italic;
+}
+
+.photo-box{
+  width:90%;
+  max-width:280px;
+  aspect-ratio:3/4;
+  margin:25px auto;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 25px rgba(255,255,255,.15);
+}
+
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:blur(20px);
+  transition:1.5s ease;
+}
+
+.photo-box.unlocked img{
+  filter:blur(0);
+}
+
+.lock{
+  position:absolute;
+  inset:0;
   display:flex;
   flex-direction:column;
   justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.55);
 }
 
-/* text reveal */
-p{
-  max-width:620px;
-  margin:18px auto;
-  line-height:1.9;
-  font-size:17px;
-  opacity:0;
-  transform:translateY(25px);
-  transition:1s;
-}
-.show p{opacity:1;transform:translateY(0)}
-
-h1,h2{font-weight:500}
-
-/* divider */
-.line{
-  width:80px;height:2px;background:#ffd166;
-  margin:30px auto;border-radius:10px;
+input,button{
+  padding:10px 14px;
+  border-radius:14px;
+  border:none;
+  outline:none;
+  margin-top:10px;
+  font-size:.9rem;
 }
 
-/* name glow */
-.name{
-  font-size:36px;font-weight:600;margin-bottom:10px;
-  animation:glow 3s infinite alternate;
-}
-@keyframes glow{
-  from{text-shadow:0 0 10px #ffd166;}
-  to{text-shadow:0 0 25px #ff8fab;}
-}
-
-/* typing */
-#typing{font-size:18px;margin-top:15px;opacity:.9}
-
-/* inputs & button */
-input{
-  padding:12px;border-radius:25px;border:none;
-  width:220px;text-align:center;margin-top:20px;
-}
 button{
-  margin-top:25px;padding:12px 32px;border:none;
-  border-radius:30px;background:#c1121f;color:white;
-  font-size:15px;cursor:pointer;
+  background:#fff;
+  color:#000;
+  cursor:pointer;
 }
 
-/* hidden box */
 .hidden{
-  display:none;margin-top:30px;padding:25px;
-  background:rgba(255,255,255,0.12);border-radius:18px;
+  display:none;
 }
 
-/* PHOTO BOX + CANDLE GLOW */
-.photo-wrap{
-  position:relative;width:260px;height:360px;margin:30px auto;
-}
-.candle-glow{
-  position:absolute;inset:-15px;border-radius:22px;
-  background:radial-gradient(circle,#ffd16655,transparent 70%);
-  filter:blur(12px);animation:flicker 4s infinite;
-}
-@keyframes flicker{
-  0%,100%{opacity:.5}
-  50%{opacity:.8}
-}
-.photo-box{
-  width:260px;height:360px;border-radius:18px;
-  overflow:hidden;position:relative;
-  box-shadow:0 0 25px rgba(255,255,255,0.25);
-}
-.photo-box img{
-  width:100%;height:100%;object-fit:cover;position:absolute;
-  opacity:0;filter:blur(10px);
-  transition:opacity 1.5s ease, filter 2s ease;
-}
-@keyframes fadePhotos{
-  0%{opacity:0}10%{opacity:1}30%{opacity:1}
-  40%{opacity:0}100%{opacity:0}
-}
-
-/* snow */
-.snow{position:fixed;top:-10px;animation:fall linear infinite;opacity:.8;pointer-events:none}
-@keyframes fall{to{transform:translateY(120vh)}}
-
-/* hearts */
-.heart{position:fixed;bottom:-20px;animation:float 7s linear infinite;opacity:.6}
-@keyframes float{to{transform:translateY(-120vh)}}
-
-/* stars */
-.star{position:fixed;width:2px;height:2px;background:white;opacity:.6}
-
-/* sparkle cursor */
-.sparkle{position:fixed;pointer-events:none;animation:fade 1s forwards}
-@keyframes fade{to{opacity:0;transform:scale(2)}}
-
-/* floating love notes */
 .note{
-  position:fixed;bottom:-30px;opacity:.7;cursor:pointer;
-  animation:float 10s linear infinite;
-}
-.note-pop{
-  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
-  background:rgba(0,0,0,.7);padding:18px 22px;border-radius:14px;
+  position:fixed;
+  bottom:-40px;
+  animation:floatUp 12s linear infinite;
+  font-size:1.3rem;
 }
 
-/* handwritten final */
-.hand{
-  font-family: "Comic Sans MS", cursive;
-  font-size:20px;transform:rotate(-2deg);opacity:.9;
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:0}
+  10%{opacity:1}
+  100%{transform:translateY(-110vh);opacity:0}
 }
 
-footer{padding:40px;font-size:14px;opacity:.7}
+.final{
+  font-family:'Great Vibes',cursive;
+  font-size:1.8rem;
+  margin-top:20px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<section class="reveal">
-  <div class="name" id="name">Wifey 🤍</div>
-  <div id="typing"></div>
-  <div id="timeMsg"></div>
-  <div class="line"></div>
+<div class="container">
 
-  <p>I would still choose you, no matter how many times life repeats. ❤️🎄</p>
-  <p>Christmas is perfect when Santa gifts what I want (youhhh!) 👻❤️🎄</p>
-</section>
+<h1>Merry Christmas 🎄</h1>
+<div class="name" id="name">wifey 🌙</div>
 
-<!-- WARMTH -->
-<section class="reveal">
-  <p>Your presence makes even the coldest Christmas warm, and the quiet moments feel nice. ❄️🤍</p>
-</section>
+<div class="card">
 
-<!-- LOCKED PHOTOS -->
-<section class="reveal">
-  <p>🔐 Locked memories</p>
-  <p>Only for you 🤍</p>
+<div class="line">I would still choose you, no matter how many times life repeats. ❤️🎄</div>
 
-  <input type="password" id="photoPass" placeholder="Enter password">
-  <br><button onclick="unlockPhotos()">Unlock Photos</button>
+<div class="line">Christmas is perfect when Santa gifts what I want (youhhh!) 👻❤️🎄</div>
 
-  <div id="photoSection" class="hidden">
-    <p>Some moments don’t need words… they just stay forever. 🤍📸</p>
+<div class="line">Your presence makes the coldest Christmas warm, and quiet moments feel nice.</div>
 
-    <div class="photo-wrap">
-      <div class="candle-glow"></div>
-      <div class="photo-box">
-        <img src="photo1.jpg">
-        <img src="photo2.jpg">
-        <img src="photo3.jpg">
-      </div>
-    </div>
-  </div>
-</section>
+<div class="line">
+Last month of this year.<br>
+Same love, same us.<br><br>
+I'm still choosing you today, tomorrow & alwayssss.<br>
+Foreverer.<br>
+I love you sooooo muchhhhhhhh 🤍
+</div>
 
-<!-- LOVE -->
-<section class="reveal">
-  <p><strong>Last month of this year ✨</strong></p>
-  <p><strong>Same love, same us. 🤍</strong></p>
-  <p>I’m still choosing you — today, tomorrow & alwaysss. ❤️🎄</p>
-  <p>Foreverer ♾️</p>
-  <p>I love you sooooo muchhhhhhhh 🫶🥺</p>
-</section>
+<div class="timeMsg" id="timeMsg"></div>
 
-<!-- SECRET -->
-<section class="reveal">
-  <h2>🔐 A little secret</h2>
-  <p>Only for you 🤍</p>
+</div>
 
-  <input type="password" id="pass" placeholder="Enter password">
-  <br><button onclick="checkPass()">Unlock</button>
+<!-- PHOTO LOCK -->
+<div class="photo-box" id="photoBox">
+<img src="photo.jpg">
+<div class="lock" id="photoLock">
+<div>Enter password to see this memory 🤍</div>
+<input type="password" id="photoPass" placeholder="password">
+<button onclick="unlockPhoto()">Unlock</button>
+</div>
+</div>
 
-  <div id="secret" class="hidden">
-    <p>I would still choose you, no matter how many times life repeats. ❤️🎄</p>
-  </div>
-</section>
+<!-- SECRET MESSAGE -->
+<div class="card">
+<div id="secretLock">
+<div>Secret message 🔐</div>
+<input type="password" id="secretPass" placeholder="password">
+<button onclick="unlockSecret()">Open</button>
+</div>
 
-<!-- FINAL GIFT -->
-<section class="reveal">
-  <button onclick="openGift()">🎁 Open my last gift</button>
-  <div id="gift" class="hidden">
-    <p class="hand">Always yours,<br>— me 🤍</p>
-  </div>
-</section>
+<div id="secretMsg" class="hidden">
+<div class="line">
+Just a little Christmas reminder from my heart —  
+that’s all I wanted to say this Christmas 🤍🎄
+</div>
+</div>
+</div>
 
-<footer>Made with love — only for her 🎄🤍</footer>
+<button onclick="finalGift()">Open my last gift 🎁</button>
+<div id="finalGift" class="hidden final">
+Always yours,<br>— me 🤍
+</div>
+
+</div>
 
 <script>
-/* reveal on scroll */
-const reveals=document.querySelectorAll(".reveal");
-window.addEventListener("scroll",()=>reveals.forEach(r=>{
-  if(r.getBoundingClientRect().top < innerHeight-100) r.classList.add("show");
-}));
-
-/* time-aware message */
-const h=new Date().getHours();
-document.getElementById("timeMsg").innerText =
-  h>=18 || h<5 ? "Hope you’re feeling safe tonight 🌙🤍" : "Good morning, my favorite person ☀️🤍";
-
-/* password secret */
-function checkPass(){
-  if(pass.value==="wifeyh") secret.style.display="block";
-}
-
-/* unlock photos */
-function unlockPhotos(){
-  if(photoPass.value==="wifeyh"){
-    photoSection.style.display="block";
-    document.querySelectorAll(".photo-box img").forEach((img,i)=>{
-      setTimeout(()=>{
-        img.style.opacity="1";
-        img.style.filter="blur(0)";
-        img.style.animation="fadePhotos 12s infinite";
-      }, i*1200);
-    });
-  }
-}
-
-/* final gift */
-function openGift(){ gift.style.display="block"; }
-
-/* name rotation */
-const names=["Wifey 🤍","Muthew 🌙","Moluuy 🫶"];let n=0;
-setInterval(()=>name.innerText=names[n++%names.length],2500);
-
-/* typing */
-const txt="A small Christmas world, made just for you 🤍🎄";let t=0;
-setInterval(()=>typing.innerText=txt.slice(0,t++),120);
-
-/* snow, hearts, stars */
-for(let i=0;i<40;i++){let s=document.createElement("div");
-s.className="snow";s.innerHTML="❄";s.style.left=Math.random()*100+"vw";
-s.style.animationDuration=4+Math.random()*6+"s";document.body.appendChild(s);}
-for(let i=0;i<18;i++){let h=document.createElement("div");
-h.className="heart";h.innerHTML="❤️";h.style.left=Math.random()*100+"vw";
-h.style.animationDuration=5+Math.random()*7+"s";document.body.appendChild(h);}
-for(let i=0;i<120;i++){let st=document.createElement("div");
-st.className="star";st.style.left=Math.random()*100+"vw";
-st.style.top=Math.random()*100+"vh";document.body.appendChild(st);}
-
-/* sparkles */
-addEventListener("mousemove",e=>{
-  let sp=document.createElement("div");
-  sp.className="sparkle";sp.innerHTML="✨";
-  sp.style.left=e.clientX+"px";sp.style.top=e.clientY+"px";
-  document.body.appendChild(sp);setTimeout(()=>sp.remove(),1000);
-});
-
-/* floating love notes */
-const notes=["You’re my favorite thought 🤍","This memory makes me smile","Us > everything","Still choosing you"];
+/* NAME ROTATION */
+const names=["wifey 🌙","muthew 🤍","moluuu ✨"];
+let i=0;
 setInterval(()=>{
-  let n=document.createElement("div");
-  n.className="note";n.innerHTML="💌";
-  n.style.left=Math.random()*100+"vw";document.body.appendChild(n);
-  n.onclick=()=>{
-    let pop=document.createElement("div");
-    pop.className="note-pop";pop.innerText=notes[Math.floor(Math.random()*notes.length)];
-    document.body.appendChild(pop);setTimeout(()=>pop.remove(),2000);
-  };
-  setTimeout(()=>n.remove(),10000);
-},4000);
+document.getElementById("name").textContent=names[i%names.length];
+i++;
+},2000);
+
+/* TIME MESSAGE */
+const h=new Date().getHours();
+document.getElementById("timeMsg").textContent=
+(h>=20||h<5)?"Hope you’re feeling safe tonight 🌙":
+"Hope today feels gentle with you 🤍";
+
+/* PHOTO UNLOCK */
+function unlockPhoto(){
+if(document.getElementById("photoPass").value==="wifeyh"){
+document.getElementById("photoBox").classList.add("unlocked");
+document.getElementById("photoLock").style.display="none";
+}
+}
+
+/* SECRET UNLOCK */
+function unlockSecret(){
+if(document.getElementById("secretPass").value==="wifeyh"){
+document.getElementById("secretLock").style.display="none";
+document.getElementById("secretMsg").classList.remove("hidden");
+}
+}
+
+/* FINAL GIFT */
+function finalGift(){
+document.getElementById("finalGift").classList.remove("hidden");
+}
+
+/* FLOATING NOTES */
+setInterval(()=>{
+const n=document.createElement("div");
+n.className="note";
+n.style.left=Math.random()*100+"%";
+n.textContent=Math.random()>0.5?"❤️":"❄️";
+document.body.appendChild(n);
+setTimeout(()=>n.remove(),12000);
+},900);
 </script>
 
 </body>
