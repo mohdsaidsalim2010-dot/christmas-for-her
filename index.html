@@ -6,6 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:'Segoe UI', sans-serif;
@@ -13,12 +15,13 @@ body{
   color:white;
   text-align:center;
   overflow-x:hidden;
+  cursor:crosshair;
 }
 
 /* sections */
 section{
   min-height:100vh;
-  padding:70px 25px;
+  padding:80px 22px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -26,12 +29,18 @@ section{
 
 /* text */
 p{
-  max-width:560px;
-  margin:16px auto;
+  max-width:600px;
+  margin:18px auto;
   line-height:1.9;
   font-size:17px;
   opacity:0;
-  animation:fadeUp 1.2s forwards;
+  transform:translateY(25px);
+  transition:1s;
+}
+
+.show p{
+  opacity:1;
+  transform:translateY(0);
 }
 
 h1,h2{
@@ -40,7 +49,7 @@ h1,h2{
 
 /* divider */
 .line{
-  width:70px;
+  width:80px;
   height:2px;
   background:#ffd166;
   margin:30px auto;
@@ -49,24 +58,25 @@ h1,h2{
 
 /* name animation */
 .name{
-  font-size:34px;
+  font-size:36px;
   font-weight:600;
   margin-bottom:10px;
   animation:glow 3s infinite alternate;
 }
 
 @keyframes glow{
-  from{text-shadow:0 0 8px #ffd166;}
-  to{text-shadow:0 0 20px #ff8fab;}
+  from{text-shadow:0 0 10px #ffd166;}
+  to{text-shadow:0 0 25px #ff8fab;}
 }
 
-/* fade */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(25px);}
-  to{opacity:1;transform:translateY(0);}
+/* typing */
+#typing{
+  font-size:18px;
+  margin-top:15px;
+  opacity:.9;
 }
 
-/* inputs */
+/* inputs & button */
 input{
   padding:12px;
   border-radius:25px;
@@ -78,7 +88,7 @@ input{
 
 button{
   margin-top:25px;
-  padding:12px 30px;
+  padding:12px 32px;
   border:none;
   border-radius:30px;
   background:#c1121f;
@@ -91,9 +101,41 @@ button{
 .hidden{
   display:none;
   margin-top:30px;
-  padding:22px;
+  padding:25px;
   background:rgba(255,255,255,0.12);
-  border-radius:16px;
+  border-radius:18px;
+}
+
+/* photo fade */
+.photo-box{
+  width:260px;
+  height:360px;
+  margin:30px auto;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 0 25px rgba(255,255,255,0.25);
+}
+
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  opacity:0;
+  animation:fadePhotos 12s infinite;
+}
+
+.photo-box img:nth-child(1){animation-delay:0s;}
+.photo-box img:nth-child(2){animation-delay:4s;}
+.photo-box img:nth-child(3){animation-delay:8s;}
+
+@keyframes fadePhotos{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
 }
 
 /* snow */
@@ -113,7 +155,7 @@ button{
 .heart{
   position:fixed;
   bottom:-20px;
-  animation:float 6s linear infinite;
+  animation:float 7s linear infinite;
   opacity:.6;
 }
 
@@ -121,10 +163,30 @@ button{
   to{transform:translateY(-120vh);}
 }
 
+/* stars */
+.star{
+  position:fixed;
+  width:2px;
+  height:2px;
+  background:white;
+  opacity:.6;
+}
+
+/* sparkle */
+.sparkle{
+  position:fixed;
+  pointer-events:none;
+  animation:fade 1s forwards;
+}
+
+@keyframes fade{
+  to{opacity:0;transform:scale(2);}
+}
+
 footer{
   padding:40px;
   font-size:14px;
-  opacity:.8;
+  opacity:.7;
 }
 </style>
 </head>
@@ -132,8 +194,9 @@ footer{
 <body>
 
 <!-- INTRO -->
-<section>
+<section class="reveal">
   <div class="name" id="name">Wifey 🤍</div>
+  <div id="typing"></div>
   <div class="line"></div>
 
   <p>
@@ -146,15 +209,29 @@ footer{
 </section>
 
 <!-- WARMTH -->
-<section>
+<section class="reveal">
   <p>
     Your presence makes even the coldest Christmas warm,  
     and the quiet moments feel nice. ❄️🤍
   </p>
 </section>
 
+<!-- PHOTO FADE -->
+<section class="reveal">
+  <p>
+    Some moments don’t need words…  
+    they just stay forever. 🤍📸
+  </p>
+
+  <div class="photo-box">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+</section>
+
 <!-- LOVE -->
-<section>
+<section class="reveal">
   <p><strong>Last month of this year ✨</strong></p>
   <p><strong>Same love, same us. 🤍</strong></p>
 
@@ -171,7 +248,7 @@ footer{
 </section>
 
 <!-- SECRET -->
-<section>
+<section class="reveal">
   <h2>🔐 A little secret</h2>
   <p>Only for you 🤍</p>
 
@@ -188,7 +265,7 @@ footer{
 </section>
 
 <!-- END -->
-<section>
+<section class="reveal">
   <p>
     Just a little Christmas reminder from my heart,  
     that’s all I wanted to say this Christmas. 🤍🎄
@@ -196,10 +273,20 @@ footer{
 </section>
 
 <footer>
-  Made with love 🎄🤍
+  Made with love — only for her 🎄🤍
 </footer>
 
 <script>
+/* reveal on scroll */
+const reveals=document.querySelectorAll(".reveal");
+window.addEventListener("scroll",()=>{
+  reveals.forEach(r=>{
+    if(r.getBoundingClientRect().top < window.innerHeight-100){
+      r.classList.add("show");
+    }
+  });
+});
+
 /* password */
 function checkPass(){
   if(document.getElementById("pass").value==="wifeyh"){
@@ -209,14 +296,22 @@ function checkPass(){
 
 /* name rotation */
 const names=["Wifey 🤍","Muthew 🌙","Moluuy 🫶"];
-let i=0;
+let n=0;
 setInterval(()=>{
-  document.getElementById("name").innerText=names[i];
-  i=(i+1)%names.length;
+  document.getElementById("name").innerText=names[n];
+  n=(n+1)%names.length;
 },2500);
 
+/* typing */
+const text="A small Christmas world, made just for you 🤍🎄";
+let t=0;
+setInterval(()=>{
+  document.getElementById("typing").innerText=text.slice(0,t++);
+  if(t>text.length) t=0;
+},120);
+
 /* snow */
-for(let i=0;i<35;i++){
+for(let i=0;i<40;i++){
   let s=document.createElement("div");
   s.className="snow";
   s.innerHTML="❄";
@@ -227,15 +322,35 @@ for(let i=0;i<35;i++){
 }
 
 /* hearts */
-for(let i=0;i<15;i++){
+for(let i=0;i<18;i++){
   let h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=5+Math.random()*6+"s";
-  h.style.fontSize=12+Math.random()*18+"px";
+  h.style.animationDuration=5+Math.random()*7+"s";
+  h.style.fontSize=12+Math.random()*20+"px";
   document.body.appendChild(h);
 }
+
+/* stars */
+for(let i=0;i<120;i++){
+  let st=document.createElement("div");
+  st.className="star";
+  st.style.left=Math.random()*100+"vw";
+  st.style.top=Math.random()*100+"vh";
+  document.body.appendChild(st);
+}
+
+/* sparkle */
+document.addEventListener("mousemove",e=>{
+  let sp=document.createElement("div");
+  sp.className="sparkle";
+  sp.innerHTML="✨";
+  sp.style.left=e.clientX+"px";
+  sp.style.top=e.clientY+"px";
+  document.body.appendChild(sp);
+  setTimeout(()=>sp.remove(),1000);
+});
 </script>
 
 </body>
