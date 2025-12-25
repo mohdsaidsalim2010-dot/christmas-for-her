@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -27,9 +27,9 @@ section{
   justify-content:center;
 }
 
-/* text */
+/* text reveal */
 p{
-  max-width:600px;
+  max-width:620px;
   margin:18px auto;
   line-height:1.9;
   font-size:17px;
@@ -37,153 +37,106 @@ p{
   transform:translateY(25px);
   transition:1s;
 }
-
-.show p{
-  opacity:1;
-  transform:translateY(0);
-}
+.show p{opacity:1;transform:translateY(0)}
 
 h1,h2{font-weight:500}
 
 /* divider */
 .line{
-  width:80px;
-  height:2px;
-  background:#ffd166;
-  margin:30px auto;
-  border-radius:10px;
+  width:80px;height:2px;background:#ffd166;
+  margin:30px auto;border-radius:10px;
 }
 
-/* name animation */
+/* name glow */
 .name{
-  font-size:36px;
-  font-weight:600;
-  margin-bottom:10px;
+  font-size:36px;font-weight:600;margin-bottom:10px;
   animation:glow 3s infinite alternate;
 }
-
 @keyframes glow{
   from{text-shadow:0 0 10px #ffd166;}
   to{text-shadow:0 0 25px #ff8fab;}
 }
 
 /* typing */
-#typing{
-  font-size:18px;
-  margin-top:15px;
-  opacity:.9;
-}
+#typing{font-size:18px;margin-top:15px;opacity:.9}
 
 /* inputs & button */
 input{
-  padding:12px;
-  border-radius:25px;
-  border:none;
-  width:220px;
-  text-align:center;
-  margin-top:20px;
+  padding:12px;border-radius:25px;border:none;
+  width:220px;text-align:center;margin-top:20px;
 }
-
 button{
-  margin-top:25px;
-  padding:12px 32px;
-  border:none;
-  border-radius:30px;
-  background:#c1121f;
-  color:white;
-  font-size:15px;
-  cursor:pointer;
+  margin-top:25px;padding:12px 32px;border:none;
+  border-radius:30px;background:#c1121f;color:white;
+  font-size:15px;cursor:pointer;
 }
 
-/* hidden */
+/* hidden box */
 .hidden{
-  display:none;
-  margin-top:30px;
-  padding:25px;
-  background:rgba(255,255,255,0.12);
-  border-radius:18px;
+  display:none;margin-top:30px;padding:25px;
+  background:rgba(255,255,255,0.12);border-radius:18px;
 }
 
-/* photo fade + blur */
+/* PHOTO BOX + CANDLE GLOW */
+.photo-wrap{
+  position:relative;width:260px;height:360px;margin:30px auto;
+}
+.candle-glow{
+  position:absolute;inset:-15px;border-radius:22px;
+  background:radial-gradient(circle,#ffd16655,transparent 70%);
+  filter:blur(12px);animation:flicker 4s infinite;
+}
+@keyframes flicker{
+  0%,100%{opacity:.5}
+  50%{opacity:.8}
+}
 .photo-box{
-  width:260px;
-  height:360px;
-  margin:30px auto;
-  border-radius:18px;
-  overflow:hidden;
-  position:relative;
+  width:260px;height:360px;border-radius:18px;
+  overflow:hidden;position:relative;
   box-shadow:0 0 25px rgba(255,255,255,0.25);
 }
-
 .photo-box img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  position:absolute;
-  opacity:0;
-  filter:blur(10px);
+  width:100%;height:100%;object-fit:cover;position:absolute;
+  opacity:0;filter:blur(10px);
   transition:opacity 1.5s ease, filter 2s ease;
 }
-
-/* fade animation */
 @keyframes fadePhotos{
-  0%{opacity:0}
-  10%{opacity:1}
-  30%{opacity:1}
-  40%{opacity:0}
-  100%{opacity:0}
+  0%{opacity:0}10%{opacity:1}30%{opacity:1}
+  40%{opacity:0}100%{opacity:0}
 }
 
 /* snow */
-.snow{
-  position:fixed;
-  top:-10px;
-  animation:fall linear infinite;
-  opacity:.8;
-  pointer-events:none;
-}
-
-@keyframes fall{
-  to{transform:translateY(120vh);}
-}
+.snow{position:fixed;top:-10px;animation:fall linear infinite;opacity:.8;pointer-events:none}
+@keyframes fall{to{transform:translateY(120vh)}}
 
 /* hearts */
-.heart{
-  position:fixed;
-  bottom:-20px;
-  animation:float 7s linear infinite;
-  opacity:.6;
-}
-
-@keyframes float{
-  to{transform:translateY(-120vh);}
-}
+.heart{position:fixed;bottom:-20px;animation:float 7s linear infinite;opacity:.6}
+@keyframes float{to{transform:translateY(-120vh)}}
 
 /* stars */
-.star{
-  position:fixed;
-  width:2px;
-  height:2px;
-  background:white;
-  opacity:.6;
+.star{position:fixed;width:2px;height:2px;background:white;opacity:.6}
+
+/* sparkle cursor */
+.sparkle{position:fixed;pointer-events:none;animation:fade 1s forwards}
+@keyframes fade{to{opacity:0;transform:scale(2)}}
+
+/* floating love notes */
+.note{
+  position:fixed;bottom:-30px;opacity:.7;cursor:pointer;
+  animation:float 10s linear infinite;
+}
+.note-pop{
+  position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:rgba(0,0,0,.7);padding:18px 22px;border-radius:14px;
 }
 
-/* sparkle */
-.sparkle{
-  position:fixed;
-  pointer-events:none;
-  animation:fade 1s forwards;
+/* handwritten final */
+.hand{
+  font-family: "Comic Sans MS", cursive;
+  font-size:20px;transform:rotate(-2deg);opacity:.9;
 }
 
-@keyframes fade{
-  to{opacity:0;transform:scale(2);}
-}
-
-footer{
-  padding:40px;
-  font-size:14px;
-  opacity:.7;
-}
+footer{padding:40px;font-size:14px;opacity:.7}
 </style>
 </head>
 
@@ -193,23 +146,16 @@ footer{
 <section class="reveal">
   <div class="name" id="name">Wifey 🤍</div>
   <div id="typing"></div>
+  <div id="timeMsg"></div>
   <div class="line"></div>
 
-  <p>
-    I would still choose you, no matter how many times life repeats. ❤️🎄
-  </p>
-
-  <p>
-    Christmas is perfect when Santa gifts what I want (youhhh!) 👻❤️🎄
-  </p>
+  <p>I would still choose you, no matter how many times life repeats. ❤️🎄</p>
+  <p>Christmas is perfect when Santa gifts what I want (youhhh!) 👻❤️🎄</p>
 </section>
 
 <!-- WARMTH -->
 <section class="reveal">
-  <p>
-    Your presence makes even the coldest Christmas warm,  
-    and the quiet moments feel nice. ❄️🤍
-  </p>
+  <p>Your presence makes even the coldest Christmas warm, and the quiet moments feel nice. ❄️🤍</p>
 </section>
 
 <!-- LOCKED PHOTOS -->
@@ -218,19 +164,18 @@ footer{
   <p>Only for you 🤍</p>
 
   <input type="password" id="photoPass" placeholder="Enter password">
-  <br>
-  <button onclick="unlockPhotos()">Unlock Photos</button>
+  <br><button onclick="unlockPhotos()">Unlock Photos</button>
 
   <div id="photoSection" class="hidden">
-    <p>
-      Some moments don’t need words…  
-      they just stay forever. 🤍📸
-    </p>
+    <p>Some moments don’t need words… they just stay forever. 🤍📸</p>
 
-    <div class="photo-box">
-      <img src="photo1.jpg">
-      <img src="photo2.jpg">
-      <img src="photo3.jpg">
+    <div class="photo-wrap">
+      <div class="candle-glow"></div>
+      <div class="photo-box">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+      </div>
     </div>
   </div>
 </section>
@@ -239,72 +184,56 @@ footer{
 <section class="reveal">
   <p><strong>Last month of this year ✨</strong></p>
   <p><strong>Same love, same us. 🤍</strong></p>
-
-  <p>
-    I’m still choosing you —  
-    today, tomorrow & alwaysss. ❤️🎄
-  </p>
-
+  <p>I’m still choosing you — today, tomorrow & alwaysss. ❤️🎄</p>
   <p>Foreverer ♾️</p>
-
-  <p>
-    I love you sooooo muchhhhhhhh 🫶🥺
-  </p>
+  <p>I love you sooooo muchhhhhhhh 🫶🥺</p>
 </section>
 
-<!-- SECRET MESSAGE -->
+<!-- SECRET -->
 <section class="reveal">
   <h2>🔐 A little secret</h2>
   <p>Only for you 🤍</p>
 
   <input type="password" id="pass" placeholder="Enter password">
-  <br>
-  <button onclick="checkPass()">Unlock</button>
+  <br><button onclick="checkPass()">Unlock</button>
 
   <div id="secret" class="hidden">
-    <p>
-      I would still choose you,  
-      no matter how many times life repeats. ❤️🎄
-    </p>
+    <p>I would still choose you, no matter how many times life repeats. ❤️🎄</p>
   </div>
 </section>
 
-<!-- END -->
+<!-- FINAL GIFT -->
 <section class="reveal">
-  <p>
-    Just a little Christmas reminder from my heart,  
-    that’s all I wanted to say this Christmas. 🤍🎄
-  </p>
+  <button onclick="openGift()">🎁 Open my last gift</button>
+  <div id="gift" class="hidden">
+    <p class="hand">Always yours,<br>— me 🤍</p>
+  </div>
 </section>
 
-<footer>
-  Made with love — only for her 🎄🤍
-</footer>
+<footer>Made with love — only for her 🎄🤍</footer>
 
 <script>
 /* reveal on scroll */
 const reveals=document.querySelectorAll(".reveal");
-window.addEventListener("scroll",()=>{
-  reveals.forEach(r=>{
-    if(r.getBoundingClientRect().top < window.innerHeight-100){
-      r.classList.add("show");
-    }
-  });
-});
+window.addEventListener("scroll",()=>reveals.forEach(r=>{
+  if(r.getBoundingClientRect().top < innerHeight-100) r.classList.add("show");
+}));
 
-/* secret text */
+/* time-aware message */
+const h=new Date().getHours();
+document.getElementById("timeMsg").innerText =
+  h>=18 || h<5 ? "Hope you’re feeling safe tonight 🌙🤍" : "Good morning, my favorite person ☀️🤍";
+
+/* password secret */
 function checkPass(){
-  if(document.getElementById("pass").value==="wifeyh"){
-    document.getElementById("secret").style.display="block";
-  }
+  if(pass.value==="wifeyh") secret.style.display="block";
 }
 
-/* unlock photos with blur + delay */
+/* unlock photos */
 function unlockPhotos(){
-  if(document.getElementById("photoPass").value==="wifeyh"){
-    document.getElementById("photoSection").style.display="block";
-    const imgs=document.querySelectorAll(".photo-box img");
-    imgs.forEach((img,i)=>{
+  if(photoPass.value==="wifeyh"){
+    photoSection.style.display="block";
+    document.querySelectorAll(".photo-box img").forEach((img,i)=>{
       setTimeout(()=>{
         img.style.opacity="1";
         img.style.filter="blur(0)";
@@ -314,63 +243,49 @@ function unlockPhotos(){
   }
 }
 
+/* final gift */
+function openGift(){ gift.style.display="block"; }
+
 /* name rotation */
-const names=["Wifey 🤍","Muthew 🌙","Moluuy 🫶"];
-let n=0;
-setInterval(()=>{
-  document.getElementById("name").innerText=names[n];
-  n=(n+1)%names.length;
-},2500);
+const names=["Wifey 🤍","Muthew 🌙","Moluuy 🫶"];let n=0;
+setInterval(()=>name.innerText=names[n++%names.length],2500);
 
 /* typing */
-const text="A small Christmas world, made just for you 🤍🎄";
-let t=0;
-setInterval(()=>{
-  document.getElementById("typing").innerText=text.slice(0,t++);
-  if(t>text.length) t=0;
-},120);
+const txt="A small Christmas world, made just for you 🤍🎄";let t=0;
+setInterval(()=>typing.innerText=txt.slice(0,t++),120);
 
-/* snow */
-for(let i=0;i<40;i++){
-  let s=document.createElement("div");
-  s.className="snow";
-  s.innerHTML="❄";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=4+Math.random()*6+"s";
-  s.style.fontSize=12+Math.random()*18+"px";
-  document.body.appendChild(s);
-}
+/* snow, hearts, stars */
+for(let i=0;i<40;i++){let s=document.createElement("div");
+s.className="snow";s.innerHTML="❄";s.style.left=Math.random()*100+"vw";
+s.style.animationDuration=4+Math.random()*6+"s";document.body.appendChild(s);}
+for(let i=0;i<18;i++){let h=document.createElement("div");
+h.className="heart";h.innerHTML="❤️";h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=5+Math.random()*7+"s";document.body.appendChild(h);}
+for(let i=0;i<120;i++){let st=document.createElement("div");
+st.className="star";st.style.left=Math.random()*100+"vw";
+st.style.top=Math.random()*100+"vh";document.body.appendChild(st);}
 
-/* hearts */
-for(let i=0;i<18;i++){
-  let h=document.createElement("div");
-  h.className="heart";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=5+Math.random()*7+"s";
-  h.style.fontSize=12+Math.random()*20+"px";
-  document.body.appendChild(h);
-}
-
-/* stars */
-for(let i=0;i<120;i++){
-  let st=document.createElement("div");
-  st.className="star";
-  st.style.left=Math.random()*100+"vw";
-  st.style.top=Math.random()*100+"vh";
-  document.body.appendChild(st);
-}
-
-/* sparkle cursor */
-document.addEventListener("mousemove",e=>{
+/* sparkles */
+addEventListener("mousemove",e=>{
   let sp=document.createElement("div");
-  sp.className="sparkle";
-  sp.innerHTML="✨";
-  sp.style.left=e.clientX+"px";
-  sp.style.top=e.clientY+"px";
-  document.body.appendChild(sp);
-  setTimeout(()=>sp.remove(),1000);
+  sp.className="sparkle";sp.innerHTML="✨";
+  sp.style.left=e.clientX+"px";sp.style.top=e.clientY+"px";
+  document.body.appendChild(sp);setTimeout(()=>sp.remove(),1000);
 });
+
+/* floating love notes */
+const notes=["You’re my favorite thought 🤍","This memory makes me smile","Us > everything","Still choosing you"];
+setInterval(()=>{
+  let n=document.createElement("div");
+  n.className="note";n.innerHTML="💌";
+  n.style.left=Math.random()*100+"vw";document.body.appendChild(n);
+  n.onclick=()=>{
+    let pop=document.createElement("div");
+    pop.className="note-pop";pop.innerText=notes[Math.floor(Math.random()*notes.length)];
+    document.body.appendChild(pop);setTimeout(()=>pop.remove(),2000);
+  };
+  setTimeout(()=>n.remove(),10000);
+},4000);
 </script>
 
 </body>
